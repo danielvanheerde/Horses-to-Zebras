@@ -1,0 +1,20 @@
+# Copied from pytorch-CycleGAN-and-pix2pix
+name: horse2zebra
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+dependencies:
+  - python>=3.11,<3.12
+  - pytorch>=2.4.0
+  - torchvision
+  - pytorch-cuda=12.1
+  - numpy>=1.26
+  - scikit-image
+  - ipykernel
+  - pip
+  - pip:
+      - dominate>=2.8.0
+      - Pillow>=10.0.0
+      - wandb>=0.16.0
+      
