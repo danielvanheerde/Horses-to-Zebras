@@ -1,4 +1,13 @@
+# Ignore python cache and user settings 
 __pycache__
 .vscode/
 
+# Ignore data set
 data/
+
+# Ignore generated outputs
+checkpoints/
+results/
+
+# Allow top-level results dir
+!/results/
