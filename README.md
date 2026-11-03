@@ -9,21 +9,28 @@ Links:
 - [Dataset](https://www.tensorflow.org/datasets/catalog/cycle_gan)
 - [pytorch-CycleGAN-and-pix2pix Github](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
 
-## Environment
+## Environment and setup
 
-Install dependencies using conda by running
+The environment files include the project dependencies. On Windows with an
+NVIDIA GPU, create and activate the environment with:
 
 ```sh
 conda env create -f environment-win.yml
-```
-
-(or using `environment-mac.yml` on mac),
-
-and then activate the environment by running
-
-```sh
 conda activate horse2zebra
 ```
+
+On macOS, use `environment-mac.yml` instead. If the `horse2zebra` environment
+already exists, update it with:
+
+```sh
+conda env update -n horse2zebra -f environment-win.yml --prune
+```
+
+Substitute `environment-mac.yml` on macOS, then activate the environment.
+
+**GPU:** Run `python -c "import torch; print(torch.cuda.is_available())"`. For NVIDIA training, it should print `True`; otherwise install CUDA-enabled PyTorch from [here](https://pytorch.org/get-started/locally/).
+
+**AttentionGAN:** Its old code uses the removed `scipy.misc.imresize`; replace that call with Pillow as described in the project notes. Installing dependencies alone won't fix it.
 
 ## Download the dataset
 
@@ -34,3 +41,11 @@ python ./scripts/download_data.py
 ```
 
 to download the dataset for the first time into `./data`.
+
+## Train a model
+
+```sh
+python baseline_cycleGAN/train.py
+# or
+python baseline_attentionGAN/train.py
+```
