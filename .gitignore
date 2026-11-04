@@ -1,2 +1,29 @@
-__pycache__
-data/
+# Python and local editor settings
+__pycache__/
+*.py[cod]
+condaenv.*.requirements.txt
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.env
+.venv/
+
+# Datasets and generated artifacts
+/data/
+/outputs/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+wandb/
+
+# Baseline output directories at any depth
+results/
+# Keep only top-level results
+!/results/
+/results/*
+!/results/summary.csv
+!/results/README.md
+!/results/figures/

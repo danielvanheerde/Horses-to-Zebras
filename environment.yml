@@ -1,0 +1,29 @@
+# Adapted from pytorch-CycleGAN-and-pix2pix
+# Windows and Apple Silicon macOS.
+# PyTorch wheels are installed by Conda's pip step
+name: horse2zebra
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - pip
+  - ipykernel
+  - numpy=1.26.4
+  - libblas=*=*openblas
+  - libcblas=*=*openblas
+  - liblapack=*=*openblas
+  - imagecodecs=2024.12.30
+  - pillow>=10,<12
+  - scipy>=1.11,<2
+  - scikit-image>=0.22,<0.26
+  - matplotlib>=3.7,<4
+  - dominate>=2.8,<3
+  - wandb>=0.16,<1
+  - visdom=0.2.4
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - "torch==2.6.0+cu124; sys_platform == 'win32'"
+      - "torchvision==0.21.0+cu124; sys_platform == 'win32'"
+      - "torch==2.6.0; sys_platform == 'darwin'"
+      - "torchvision==0.21.0; sys_platform == 'darwin'"
