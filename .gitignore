@@ -14,7 +14,6 @@ Thumbs.db
 /data/
 /outputs/
 checkpoints/
-/main_model_checkpoints/
 *.pt
 *.pth
 *.ckpt

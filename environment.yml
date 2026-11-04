@@ -10,6 +10,9 @@ dependencies:
   - pip
   - ipykernel
   - numpy=1.26.4
+  - libblas=*=*openblas
+  - libcblas=*=*openblas
+  - liblapack=*=*openblas
   - imagecodecs=2024.12.30
   - pillow>=10,<12
   - scipy>=1.11,<2
