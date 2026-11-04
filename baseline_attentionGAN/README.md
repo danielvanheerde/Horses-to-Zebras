@@ -6,44 +6,31 @@ Paper: Tang et al., *AttentionGAN: Unpaired Image-to-Image Translation Using Att
 
 Code: https://github.com/Ha0Tang/AttentionGAN
 
-## 1. Add the original implementation
+## Setup
 
-From the root of `Horses-to-Zebras`:
+Follow the [root README](../README.md#clone-and-set-up) to initialize the pinned
+submodules, apply `patches/attentiongan-pillow.patch`, and create the shared
+Conda environment. Do not clone another copy or install upstream dependency pins.
 
-```powershell
-git clone https://github.com/Ha0Tang/AttentionGAN.git third_party/AttentionGAN
-```
-
-## 2. Install the extra dependencies
-
-Activate the existing `horse2zebra` Conda environment. Keep the CUDA-enabled PyTorch installation that is already working for your CycleGAN.
-
-```powershell
-conda activate horse2zebra
-python -m pip install visdom dominate
-```
-
-The original AttentionGAN repository is older and lists `scipy==1.1.0`. **Do not install that old pin into Python 3.11**; it is not compatible with this newer environment. The older repository may require further compatibility fixes with modern PyTorch/torchvision.
-
-## 3. Train
+## Train
 
 The `data/horse2zebra` directory should contain `trainA`, `trainB`, `testA`, and `testB`.
 
 ```powershell
-python attentionGAN/train.py
+python baseline_attentionGAN/train.py
 ```
 
-This follows the author's horse2zebra training script: batch size 4, 60 epochs, 256-pixel crops, and GPU 0. We disable Visdom popup and set data loading workers to 0 for simpler Windows use.
+This follows the author's horse2zebra training script: batch size 4, 60 epochs, 256-pixel crops, and GPU 0 when CUDA is available (otherwise CPU). We disable Visdom popup and set data loading workers to 0 for simpler Windows use.
 
-## 4. Test
+## Test
 
 ```powershell
-python attentionGAN/test.py
+python baseline_attentionGAN/test.py
 ```
 
-Outputs: `attentionGAN/results/`
+Outputs: `baseline_attentionGAN/results/`
 
-Weights: `attentionGAN/checkpoints/horse2zebra_attention/`
+Weights: `baseline_attentionGAN/checkpoints/horse2zebra_attention/`
 
 ## How is it different from CycleGAN?
 
@@ -53,3 +40,9 @@ Source of the model's losses and forward pass:
 `third_party/AttentionGAN/models/attention_gan_model.py`
 
 Note: training has not been run or verified with your Windows/CUDA environment. This package only provides simple entry points matching the authors' published commands. Compare epoch counts and batch size before claiming a fair evaluation against the existing 200-epoch CycleGAN baseline.
+
+Extra command-line arguments are forwarded to the upstream script, for example:
+
+```sh
+python baseline_attentionGAN/train.py --batch_size 1 --gpu_ids -1
+```

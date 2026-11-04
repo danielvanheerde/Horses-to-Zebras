@@ -2,12 +2,15 @@
 from pathlib import Path
 import subprocess
 import sys
+import torch
 
 project = Path(__file__).resolve().parent.parent
 attentiongan = project / "third_party" / "AttentionGAN"
 
 subprocess.run([
-    sys.executable, "train.py",
+    # Preload Pillow before upstream imports torch.
+    sys.executable, "-c",
+    "from PIL import Image; import runpy; runpy.run_path('train.py', run_name='__main__')",
     "--dataroot", str(project / "data" / "horse2zebra"),
     "--name", "horse2zebra_attention",
     "--model", "attention_gan",
@@ -24,8 +27,8 @@ subprocess.run([
     "--batch_size", "4",
     "--niter", "60",
     "--niter_decay", "0",
-    "--gpu_ids", "0",
+    "--gpu_ids", "0" if torch.cuda.is_available() else "-1",
     "--num_threads", "0",
     "--display_id", "-1",
     "--print_freq", "100",
-], cwd=attentiongan, check=True)
+] + sys.argv[1:], cwd=attentiongan, check=True)

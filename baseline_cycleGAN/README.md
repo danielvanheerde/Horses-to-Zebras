@@ -26,4 +26,11 @@ Images are saved under `baseline_cycleGAN/results/horse2zebra_baseline/test_late
 - `test.py` calls the original third-party `test.py` to generate images using saved weights.
 - Neither file defines a new model. The model and losses live in `third_party/pytorch-CycleGAN-and-pix2pix/models/cycle_gan_model.py`.
 
-**GPU:** The reference scripts use CUDA GPU 0 by default. If you don't have an NVIDIA GPU with a working CUDA PyTorch install, add `"--gpu_ids", "-1",` to the argument list in **both** Python files to run on CPU (much slower).
+**Setup:** Follow the [root README](../README.md#clone-and-set-up) for the
+submodules and shared environment. This pinned CycleGAN selects CUDA GPU 0
+when available and CPU otherwise. It does not accept the older `--gpu_ids` flag.
+Extra command-line arguments are forwarded to the upstream script, for example:
+
+```sh
+python baseline_cycleGAN/train.py --batch_size 1 --num_threads 0
+```
