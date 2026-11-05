@@ -1,5 +1,5 @@
 # Adapted from pytorch-CycleGAN-and-pix2pix
-# Windows and Apple Silicon macOS.
+# Windows, Linux and Apple Silicon macOS.
 # PyTorch wheels are installed by Conda's pip step
 name: horse2zebra
 channels:
@@ -23,7 +23,7 @@ dependencies:
   - visdom=0.2.4
   - pip:
       - --extra-index-url https://download.pytorch.org/whl/cu124
-      - "torch==2.6.0+cu124; sys_platform == 'win32'"
-      - "torchvision==0.21.0+cu124; sys_platform == 'win32'"
+      - "torch==2.6.0+cu124; sys_platform == 'win32' or sys_platform == 'linux'"
+      - "torchvision==0.21.0+cu124; sys_platform == 'win32' or sys_platform == 'linux'"
       - "torch==2.6.0; sys_platform == 'darwin'"
       - "torchvision==0.21.0; sys_platform == 'darwin'"
