@@ -21,6 +21,7 @@ dependencies:
   - dominate>=2.8,<3
   - wandb>=0.16,<1
   - visdom=0.2.4
+  - pyyaml>=6,<7  # diffusion/ experiment configs
   - pip:
       - --extra-index-url https://download.pytorch.org/whl/cu124
       - "torch==2.6.0+cu124; sys_platform == 'win32' or sys_platform == 'linux'"
